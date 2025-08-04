@@ -9,7 +9,287 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./assets/styles/index.css">
+    <style>
+        .carousel-section {
+            background-color: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
+        .carousel-container {
+            max-width: 1000px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            flex-shrink: 0;
+            width: 100%;
+            min-height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(70%) contrast(1.2); /* Added filter effect */
+        }
+
+        .carousel-text {
+            position: absolute;
+            text-align: center;
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        .carousel-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #f4f7fa;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .highlight {
+            color: #ff6200;
+            font-weight: bold;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background-color: #003087;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-btn:hover {
+            background-color: #ff6200;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 40px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-dot.active {
+            background-color: #ff6200;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item {
+                min-height: 300px;
+            }
+
+            .carousel-text h3 {
+                font-size: 1.8rem;
+            }
+
+            .carousel-text p {
+                font-size: 1rem;
+            }
+
+            .carousel-nav {
+                right: 20px;
+            }
+
+            .carousel-dots {
+                left: 20px;
+            }
+        }
+
+        /* Second Carousel (Unchanged) */
+        .DriversContainer {
+            background-color: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .carousel-container-driver {
+            max-width: 1000px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-driver {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item-driver {
+            display: flex;
+            flex-shrink: 0;
+            width: 100%;
+            min-height: 400px;
+        }
+
+        .driver-image-driver {
+            width: 40%;
+            background-color: #003087;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .driver-image-driver img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .driver-info-driver {
+            width: 60%;
+            padding: 40px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #333;
+        }
+
+        .driver-info-driver h2 {
+            color: #003087;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .driver-info-driver p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .highlight-driver {
+            color: #ff6200;
+            font-weight: bold;
+        }
+
+        .carousel-nav-driver {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn-driver {
+            background-color: #003087;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-btn-driver:hover {
+            background-color: #ff6200;
+        }
+
+        .carousel-dots-driver {
+            position: absolute;
+            bottom: 20px;
+            left: 40px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot-driver {
+            width: 10px;
+            height: 10px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot-driver.active {
+            background-color: #ff6200;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item-driver {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .driver-image-driver,
+            .driver-info-driver {
+                width: 100%;
+            }
+
+            .driver-info-driver {
+                padding: 20px;
+            }
+
+            .carousel-nav-driver {
+                right: 20px;
+            }
+
+            .carousel-dots-driver {
+                left: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -48,6 +328,60 @@
         </div>
     </section>
 
+    <!-- Carousel Section -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel" id="servicesCarousel">
+                <div class="carousel-item">
+                    <img src="./assets/img/carossel_1/4.jpeg" alt="Transporte por Carretera">
+                    <div class="carousel-text">
+                        <h3>Transporte por Carretera</h3>
+                        <p>Flota moderna para entregas <span class="highlight">rápidas</span> y <span class="highlight">confiables</span>.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/img/carossel_1/2.jpeg" alt="Rastreo en Tiempo Real">
+                    <div class="carousel-text">
+                        <h3>Rastreo en Tiempo Real</h3>
+                        <p>Sigue tus envíos al instante con <span class="highlight">GPS avanzado</span>.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/img/carossel_1/5.jpeg" alt="Almacenaje Seguro">
+                    <div class="carousel-text">
+                        <h3>Almacenaje Seguro</h3>
+                        <p>Espacios <span class="highlight">climatizados</span> para proteger tus productos.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/img/carossel_1/4.jpeg" alt="Logística Completa">
+                    <div class="carousel-text">
+                        <h3>Logística Completa</h3>
+                        <p>Optimizamos toda tu <span class="highlight">cadena de suministro</span>.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./assets/img/carossel_1/6.jpeg" alt="Seguridad Garantizada">
+                    <div class="carousel-text">
+                        <h3>Seguridad Garantizada</h3>
+                        <p>Protocolos estrictos para mercancías <span class="highlight">especiales</span>.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="nav-btn" onclick="prevCarouselSlide()">&#10094;</button>
+                <button class="nav-btn" onclick="nextCarouselSlide()">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <div class="carousel-dot active" onclick="goToCarouselSlide(0)"></div>
+                <div class="carousel-dot" onclick="goToCarouselSlide(1)"></div>
+                <div class="carousel-dot" onclick="goToCarouselSlide(2)"></div>
+                <div class="carousel-dot" onclick="goToCarouselSlide(3)"></div>
+                <div class="carousel-dot" onclick="goToCarouselSlide(4)"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section class="about" id="nosotros">
         <div class="container">
@@ -67,6 +401,49 @@
             </div>
         </div>
     </section>
+
+    <div class="DriversContainer">
+        <div class="carousel-container-driver">
+            <div class="carousel-driver">
+                <div class="carousel-item-driver">
+                    <div class="driver-image-driver">
+                        <img src="./assets/img/caroussel_2/1.jpeg" alt="Chofer 1">
+                    </div>
+                    <div class="driver-info-driver">
+                        <h2>Nuestros Choferes</h2>
+                        <p>Nuestros conductores son <span class="highlight-driver">profesionales altamente calificados</span>, con licencias vigentes y capacitaciones rigurosas. Cada chofer pasa por estrictos filtros toxicológicos y de antecedentes para garantizar la <span class="highlight">seguridad</span> y <span class="highlight">confiabilidad</span> en cada viaje.</p>
+                    </div>
+                </div>
+                <div class="carousel-item-driver">
+                    <div class="driver-image-driver">
+                        <img src="./assets/img/caroussel_2/2.jpeg" alt="Chofer 2">
+                    </div>
+                    <div class="driver-info-driver">
+                        <h2>Compromiso y Seguridad</h2>
+                        <p>En nuestra empresa, priorizamos la <span class="highlight-driver">seguridad</span> de nuestros clientes. Nuestros choferes están capacitados para manejar cualquier situación en la carretera, asegurando un servicio de <span class="highlight">transporte confiable</span> y eficiente.</p>
+                    </div>
+                </div>
+                <div class="carousel-item-driver">
+                    <div class="driver-image-driver">
+                        <img src="./assets/img/caroussel_2/3.jpeg" alt="Chofer 3">
+                    </div>
+                    <div class="driver-info-driver">
+                        <h2>Experiencia y Profesionalismo</h2>
+                        <p>Con años de experiencia en el sector de transporte y logística, nuestros choferes ofrecen un servicio de <span class="highlight">calidad superior</span>, cumpliendo con los más altos estándares de la industria.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav-driver">
+                <button class="nav-btn-driver" onclick="prevSlide()">&#10094;</button>
+                <button class="nav-btn-driver" onclick="nextSlide()">&#10095;</button>
+            </div>
+            <div class="carousel-dots-driver">
+                <div class="dot-driver active" onclick="goToSlide(0)"></div>
+                <div class="dot-driver" onclick="goToSlide(1)"></div>
+                <div class="dot-driver" onclick="goToSlide(2)"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Services Section -->
     <section class="services" id="servicios">
@@ -93,15 +470,7 @@
                         <p>Monitoreo en tiempo real de tus envíos con nuestra plataforma tecnológica avanzada.</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-warehouse"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Almacenamiento</h3>
-                        <p>Servicios de almacenaje y distribución con instalaciones seguras y climatizadas según necesidades.</p>
-                    </div>
-                </div>
+              
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-boxes"></i>
@@ -111,15 +480,7 @@
                         <p>Gestión completa de la cadena de suministro desde el origen hasta el destino final.</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-temperature-low"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Transporte Refrigerado</h3>
-                        <p>Flota especializada para productos que requieren control de temperatura durante el transporte.</p>
-                    </div>
-                </div>
+              
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-shield-alt"></i>
@@ -298,35 +659,35 @@
             <div class="blog-grid">
                 <div class="blog-card">
                     <div class="blog-image">
-                        <img src="https://images.unsplash.com/photo-1601579118940-1b8b2b9b5b5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nuevas regulaciones">
+                        <img src="./assets/img/carossel_1/3.jpeg" alt="Nuevas regulaciones">
                     </div>
                     <div class="blog-content">
-                        <div class="blog-date">15 Junio 2023</div>
-                        <h3>Nuevas regulaciones en transporte de carga para 2023</h3>
+                        <div class="blog-date">15 Junio 2025</div>
+                        <h3>Nuevas regulaciones en transporte de carga para 2025</h3>
                         <p>Conoce los cambios en las normativas de transporte terrestre y cómo afectan a tu cadena de suministro.</p>
-                        <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                         <a href="https://pin.it/1P4N4qHun" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a> 
                     </div>
                 </div>
                 <div class="blog-card">
                     <div class="blog-image">
-                        <img src="https://images.unsplash.com/photo-1601579118940-1b8b2b9b5b5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tecnología logística">
+                        <img src="./assets/img/carossel_1/1.jpeg" alt="Tecnología logística">
                     </div>
                     <div class="blog-content">
-                        <div class="blog-date">2 Junio 2023</div>
+                        <div class="blog-date">2 Junio 2025</div>
                         <h3>Tendencias tecnológicas en logística para mejorar tu negocio</h3>
                         <p>Descubre cómo la tecnología está transformando la industria del transporte y cómo puedes beneficiarte.</p>
-                        <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://pin.it/1P4N4qHun" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a> 
                     </div>
                 </div>
                 <div class="blog-card">
                     <div class="blog-image">
-                        <img src="https://images.unsplash.com/photo-1601579118940-1b8b2b9b5b5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ahorro logístico">
+                        <img src="./assets/img/carossel_1/5.jpeg" alt="Ahorro logístico">
                     </div>
                     <div class="blog-content">
-                        <div class="blog-date">20 Mayo 2023</div>
+                        <div class="blog-date">20 Mayo 2025</div>
                         <h3>5 estrategias para reducir costos en tu cadena de suministro</h3>
                         <p>Aprende técnicas comprobadas para optimizar tus gastos logísticos sin sacrificar calidad.</p>
-                        <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://pin.it/1P4N4qHun" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a> 
                     </div>
                 </div>
             </div>
@@ -566,14 +927,12 @@
         // Form submissions
         document.getElementById('cotizacionForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Here you would normally send the form data to your server
             alert('Gracias por tu solicitud de cotización. Nos pondremos en contacto contigo en breve.');
             this.reset();
         });
 
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Here you would normally send the form data to your server
             alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
             this.reset();
         });
@@ -597,6 +956,73 @@
 
         // Initialize
         revealOnScroll();
+
+        // First Carousel functionality
+        let currentCarouselSlide = 0;
+        const carouselSlides = document.querySelectorAll('.carousel-item');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
+        const totalCarouselSlides = carouselSlides.length;
+
+        function updateCarousel() {
+            document.querySelector('.carousel').style.transform = `translateX(-${currentCarouselSlide * 100}%)`;
+            carouselDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentCarouselSlide);
+            });
+        }
+
+        function nextCarouselSlide() {
+            currentCarouselSlide = (currentCarouselSlide + 1) % totalCarouselSlides;
+            updateCarousel();
+        }
+
+        function prevCarouselSlide() {
+            currentCarouselSlide = (currentCarouselSlide - 1 + totalCarouselSlides) % totalCarouselSlides;
+            updateCarousel();
+        }
+
+        function goToCarouselSlide(index) {
+            currentCarouselSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-slide every 4 seconds
+        let carouselInterval = setInterval(nextCarouselSlide, 4000);
+
+        document.querySelector('.carousel').addEventListener('mouseenter', () => clearInterval(carouselInterval));
+        document.querySelector('.carousel').addEventListener('mouseleave', () => {
+            carouselInterval = setInterval(nextCarouselSlide, 4000);
+        });
+
+        // Second Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item-driver');
+        const dotsDriver = document.querySelectorAll('.dot-driver');
+        const totalSlides = slides.length;
+
+        function updateDriverCarousel() {
+            document.querySelector('.carousel-driver').style.transform = `translateX(-${currentSlide * 100}%)`;
+            dotsDriver.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateDriverCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateDriverCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateDriverCarousel();
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(nextSlide, 5000);
     </script>
 </body>
 </html>
